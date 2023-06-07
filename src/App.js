@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import useLogData from './hooks/useLogData';
 
 function App() {
+  const logData = useLogData();
+
+  if (!logData) {
+    return <div>Loading log data...</div>;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Tibia Log Extractor</h1>
+      <h2>Log Data:</h2>
+      <pre>{JSON.stringify(logData, null, 2)}</pre>
     </div>
   );
 }
